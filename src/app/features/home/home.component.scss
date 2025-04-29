@@ -1,0 +1,186 @@
+@use '../../../styles.scss' as styles;
+@use 'sass:color'; // Importar el módulo sass:color
+
+.home-container {
+  padding: 20px;
+}
+
+/* Carrusel */
+.carousel {
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  .carousel-inner {
+    height: 400px;
+    background-color: #F9E4E8;
+    .carousel-item {
+      height: 100%;
+      img {
+        max-height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        margin: 0 auto;
+      }
+    }
+    .carousel-caption {
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
+      padding: 10px;
+      h5 {
+        color: #fff;
+        font-size: 1.5rem;
+      }
+      p {
+        color: #fff;
+        font-size: 1rem;
+      }
+    }
+  }
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 5%;
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+    }
+  }
+}
+
+/* Sección Sobre Nosotros */
+.about-section {
+  text-align: center;
+  margin: 40px 0;
+  padding: 20px;
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: styles.$accent;
+  }
+  p {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+  }
+  .cta-button {
+    font-size: 1.2rem;
+    padding: 10px 30px;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+    background-color: #D4A373; // Dorado suave
+    border-color: #D4A373;
+    color: #fff;
+    &:hover {
+      transform: scale(1.05);
+      background-color: color.adjust(#D4A373, $lightness: -10%); // Reemplazo de darken
+      border-color: color.adjust(#D4A373, $lightness: -10%); // Reemplazo de darken
+    }
+  }
+}
+
+/* Sección de Servicios */
+.services-section {
+  background-color: rgba(249, 228, 232, 0.3); // Fondo rosa pálido semitransparente
+  padding: 40px 20px;
+  text-align: center;
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: styles.$accent;
+  }
+  .services-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    .service-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 250px;
+      padding: 15px;
+      transition: transform 0.3s ease;
+      img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+      h3 {
+        font-size: 1.3rem;
+        color: styles.$accent;
+        margin-bottom: 10px;
+      }
+      p {
+        font-size: 0.9rem;
+        color: #555;
+      }
+      &:hover {
+        transform: translateY(-5px);
+      }
+    }
+  }
+}
+
+/* Sección de Testimonios */
+.testimonials-section {
+  padding: 40px 20px;
+  text-align: center;
+  h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: styles.$accent;
+  }
+  .testimonials-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    .testimonial-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      padding: 20px;
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin-bottom: 15px;
+        object-fit: cover;
+      }
+      p {
+        font-style: italic;
+        color: #555;
+        margin-bottom: 10px;
+      }
+      h4 {
+        font-size: 1rem;
+        color: styles.$accent;
+      }
+    }
+  }
+}
+
+/* Footer */
+.footer {
+  background-color: styles.$navbar-bg;
+  padding: 20px;
+  text-align: center;
+  margin-top: 40px;
+  p {
+    margin: 5px 0;
+    color: #555;
+  }
+  .social-link {
+    color: styles.$accent;
+    text-decoration: none;
+    margin: 0 5px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

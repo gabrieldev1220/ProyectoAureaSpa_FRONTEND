@@ -1,0 +1,17 @@
+@use '../../../styles.scss' as styles;
+@use 'sass:color';
+
+.modal-content {
+  border-radius: 10px;
+  .modal-header {
+    background-color: styles.$primary;
+    color: #fff;
+  }
+  .form-control {
+    border-color: styles.$neutral;
+    &:focus {
+      border-color: styles.$accent;
+      box-shadow: 0 0 5px rgba(styles.$accent, 0.5);
+    }
+  }
+}

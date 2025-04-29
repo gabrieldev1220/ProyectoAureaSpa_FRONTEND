@@ -1,0 +1,11 @@
+<div class="admin-dashboard">
+  <h2>Dashboard de Administración</h2>
+  <p>Bienvenido/a, {{ userRole || 'Administrador' }}</p>
+  <div class="admin-options">
+    <h3>Opciones de Administración</h3>
+    <button class="btn btn-primary" [routerLink]="['/admin/clientes']">Gestionar Clientes</button>
+    <button class="btn btn-primary" [routerLink]="['/admin/empleados']">Gestionar Empleados</button>
+    <button class="btn btn-primary" [routerLink]="['/admin/reservas']">Gestionar Reservas</button>
+  </div>
+  <button class="btn btn-secondary" (click)="logout()">Cerrar Sesión</button>
+</div>
