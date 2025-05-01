@@ -4,12 +4,13 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { Empleado } from '../models/empleado';
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmpleadoService {
-  private apiUrl = 'http://localhost:8080/api/admin/empleados';
+  private apiUrl = `${environment.apiUrl}/api/admin/empleados`;
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 import { Cliente } from '../models/cliente';
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
-  private apiUrl = 'http://localhost:8080/api/admin/clientes';
+  private apiUrl = `${environment.apiUrl}/api/admin/clientes`;
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

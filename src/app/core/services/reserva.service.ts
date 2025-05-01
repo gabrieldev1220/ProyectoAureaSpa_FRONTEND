@@ -4,8 +4,9 @@ import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { Reserva } from '../models/reserva';
 import { AuthService } from './auth.service';
+import { environment } from '@environments/environment';
 
-// Definimos una interfaz para la respuesta del backend
+// Se define una interfaz para la respuesta del backend
 interface ReservaResponse {
   message?: string;
   data?: Reserva;
@@ -15,7 +16,7 @@ interface ReservaResponse {
   providedIn: 'root'
 })
 export class ReservaService {
-  private apiUrl = 'http://localhost:8080/api/clientes/reservas';
+  private apiUrl = `${environment.apiUrl}/api/clientes/reservas`;
   private adminApiUrl = 'http://localhost:8080/api/admin/reservas';
   private serviciosUrl = 'http://localhost:8080/api/servicios';
 
@@ -33,7 +34,7 @@ export class ReservaService {
       console.error('No se encontró clienteId. Asegúrate de estar autenticado.');
       throw new Error('No se encontró clienteId. Por favor, inicia sesión nuevamente.');
     }
-    const url = `http://localhost:8080/api/clientes/${clienteId}/reservas`;
+    const url = `${environment.apiUrl}/api/clientes/${clienteId}/reservas`;
     return this.http.get<Reserva[]>(url, { headers: this.getHeaders() }).pipe(
       tap(reservas => console.log('Reservas obtenidas:', reservas)),
       catchError(error => {
@@ -53,7 +54,7 @@ export class ReservaService {
     );
   }
 
-  // Métodos para Administradores
+  // Métodos para los Administradores o empleados que tengan el rol de GERENTE_GENERAL
   getAllReservas(): Observable<Reserva[]> {
     return this.http.get<Reserva[]>(this.adminApiUrl, { headers: this.getHeaders() }).pipe(
       catchError(error => {
