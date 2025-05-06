@@ -10,7 +10,7 @@ import { environment } from '@environments/environment';
   providedIn: 'root'
 })
 export class EmpleadoService {
-  private apiUrl = `${environment.apiUrl}/api/admin/empleados`;
+  private apiUrl = `${environment.apiUrl}/api/empleados`; // Se cambió de /api/admin/empleados a /api/empleados
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
