@@ -14,7 +14,7 @@ export class NavbarComponent {
   loginData = { email: '', password: '' };
   registerData = { dni: '', nombre: '', apellido: '', email: '', password: '', telefono: '' };
 
-  // Lista de servicios movida desde ServiciosComponent
+  // Lista de servicios
   serviciosIndividuales = [
     {
       categoria: 'Masajes',
