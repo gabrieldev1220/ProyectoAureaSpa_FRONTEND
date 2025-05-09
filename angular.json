@@ -37,6 +37,7 @@
             "production": {
               "optimization": true,
               "outputHashing": "all",
+              "outputPath": "dist/aurea-spa-frontend",
               "sourceMap": false,
               "namedChunks": false,
               "aot": true,
