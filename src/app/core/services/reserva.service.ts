@@ -17,8 +17,8 @@ interface ReservaResponse {
 })
 export class ReservaService {
   private apiUrl = `${environment.apiUrl}/api/clientes/reservas`;
-  private adminApiUrl = 'http://localhost:8080/api/admin/reservas';
-  private serviciosUrl = 'http://localhost:8080/api/servicios';
+  private adminApiUrl = `${environment.apiUrl}/api/admin/reservas`;
+  private serviciosUrl = `${environment.apiUrl}/api/servicios`;
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 

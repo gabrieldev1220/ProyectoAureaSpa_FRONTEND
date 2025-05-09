@@ -20,16 +20,15 @@ interface Reserva {
 })
 export class RecepcionistaDashboardComponent implements OnInit {
   reservas: Reserva[] = [];
-  private apiUrl = 'http://localhost:8080/api/admin/reservas';
 
-  constructor(private http: HttpClient) {}
+  constructor(private reservaService: ReservaService) {}
 
   ngOnInit(): void {
     this.loadReservas();
   }
 
   loadReservas(): void {
-    this.getReservas().subscribe({
+    this.reservaService.getAllReservas().subscribe({
       next: (reservas) => {
         this.reservas = reservas;
       },
@@ -38,9 +37,5 @@ export class RecepcionistaDashboardComponent implements OnInit {
         alert('Error al cargar las reservas. Por favor, intenta de nuevo.');
       }
     });
-  }
-
-  getReservas(): Observable<Reserva[]> {
-    return this.http.get<Reserva[]>(this.apiUrl);
   }
 }

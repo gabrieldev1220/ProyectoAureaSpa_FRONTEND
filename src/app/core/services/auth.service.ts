@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { environment } from '@environments/environment';
 
@@ -24,7 +24,7 @@ export class AuthService {
         console.log('Respuesta del login:', response);
         if (response.jwt) {
           localStorage.setItem(this.tokenKey, response.jwt);
-          const userId = response.userId; // Cambiar clienteId a userId
+          const userId = response.userId;
           if (userId) {
             localStorage.setItem(this.userIdKey, userId);
           } else {
@@ -40,6 +40,17 @@ export class AuthService {
           });
           this.isLoggedInSubject.next(true);
         }
+      }),
+      catchError((error: HttpErrorResponse) => {
+        let errorMessage = 'Error al iniciar sesión. Por favor, intenta de nuevo.';
+        if (error.status === 401) {
+          errorMessage = 'Correo o contraseña incorrectos.';
+        } else if (error.status === 404) {
+          errorMessage = 'El correo no está registrado.';
+        } else if (error.error && error.error.message) {
+          errorMessage = error.error.message; // Usar mensaje del backend si está disponible
+        }
+        return throwError(() => new Error(errorMessage));
       })
     );
   }

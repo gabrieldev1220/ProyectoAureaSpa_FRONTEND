@@ -33,11 +33,12 @@ export class DashboardComponent implements OnInit {
   servicios: string[] = [];
   empleados: any[] = [];
   nuevaReserva: Reserva = {
-    servicio: '',
+    id: 0,
+    cliente: {} as Cliente,
+    empleado: {} as Empleado,
     fechaReserva: '',
-    cliente: {} as any, // Temporalmente usamos any, lo corregiremos después
-    empleado: {} as any, // Temporalmente usamos any, lo corregiremos después
-    status: 'PENDIENTE'
+    servicio: '',
+    status: ''
   };
 
   selectedEmpleadoId: number | null = null; // Nueva propiedad para el formulario
@@ -192,11 +193,12 @@ export class DashboardComponent implements OnInit {
 
         // Limpiar el formulario
         this.nuevaReserva = {
-          servicio: '',
+          id: 0,
+          cliente: { dni: '', nombre: '', apellido: '', email: '', telefono: '' } as Cliente,
+          empleado: { dni: '', nombre: '', apellido: '', email: '', telefono: '', rol: '' } as Empleado,
           fechaReserva: '',
-          cliente: { dni: '', nombre: '', apellido: '', email: '', telefono: '' },
-          empleado: { dni: '', nombre: '', apellido: '', email: '', telefono: '', rol: '' },
-          status: 'PENDIENTE'
+          servicio: '',
+          status: ''
         };
         this.selectedEmpleadoId = null;
       },

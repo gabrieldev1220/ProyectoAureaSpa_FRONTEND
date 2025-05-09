@@ -2,21 +2,24 @@ import { Component } from '@angular/core';
 import { AuthService } from '@core/services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   standalone: true,
-  imports: [FormsModule]
+  imports: [FormsModule, CommonModule]
 })
 export class LoginComponent {
   email: string = '';
   password: string = '';
+  errorMessage: string = ''; // Propiedad para mostrar errores
 
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
+    this.errorMessage = ''; // Limpiar cualquier mensaje de error previo.
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
         console.log('Login exitoso:', response);
@@ -30,7 +33,7 @@ export class LoginComponent {
       },
       error: (error) => {
         console.error('Error en el login:', error);
-        alert('Error al iniciar sesión. Por favor, verifica tus credenciales.');
+        this.errorMessage = error.message; // Muestra un mensaje de error específico.
       }
     });
   }
